@@ -39,7 +39,7 @@
       ansible.builtin.service:
         name: chronyd
         enabled: true
-        status: started
+        state: started
 
     - name: mlocate updatedb
       ansible.builtin.shell: updatedb
@@ -67,5 +67,5 @@
       ansible.builtin.service:
         name: postfix
         enabled: true
-        status: started
+        state: started
 
