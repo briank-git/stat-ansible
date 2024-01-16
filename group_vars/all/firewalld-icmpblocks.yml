@@ -1,0 +1,11 @@
+icmp_blocks:
+  - name: echo-reply
+  - name: echo-request
+  - name: destination-unreachable
+  - name: packet-too-big
+  - name: time-exceeded
+  - name: parameter-problem
+  - name: neighbour-advertisement
+  - name: neighbour-solicitation
+  - name: router-advertisement
+  - name: router-solicitation

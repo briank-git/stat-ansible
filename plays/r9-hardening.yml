@@ -114,3 +114,21 @@
         zone: public
         permanent: true
         immediate: true
+
+    - name: Enable icmp-block inversion
+      ansible.posix.firewalld:
+        icmp_block_inversion:
+        state: enabled
+        zone: public
+        permanent: true
+        immediate: true
+
+    - name: Add icmp blocks
+      ansible.posix.firewalld:
+        icmp_block: "{{ item.name }}"
+        state: enabled
+        zone: public
+        permanent: true
+        immediate: true
+      with_items: "{{ icmp_blocks }}"
+      when: icmp_blocks is defined
