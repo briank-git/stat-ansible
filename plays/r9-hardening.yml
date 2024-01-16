@@ -9,3 +9,17 @@
         state: "{{ item.state | default('present') }}"
       with_items: "{{ hardening_packages }}"
       when: hardening_packages is defined
+
+    - name: Setup fail2ban filtered SSH service
+      copy:
+        src: ../files/fail2ban/sshd.local
+        dest: /etc/fail2ban/jail.d/sshd.local
+        force: true
+
+    - name: Enable fail2ban
+      ansible.builtin.service:
+        name: fail2ban
+        enabled: true
+        state: started
+
+    
