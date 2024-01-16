@@ -1,0 +1,6 @@
+---
+ssh_public_keys:
+  iana:
+    user: '{{ ansible_user }}'
+    state: 'present'
+    public_key:
