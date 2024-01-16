@@ -38,5 +38,7 @@
     - name: Enable chrony
       ansible.builtin.shell: |
         systemctl start chronyd
-        systemctl status chronyd
         systemctl enable chronyd
+
+    - name: mlocate updatedb
+      ansible.builtin.shell: updatedb
