@@ -22,4 +22,18 @@
         enabled: true
         state: started
 
+    - name: Initialize aide
+      ansible.builtin.shell: |
+        aide --init
+        mv /var/lib/aide/aide.db.new.gz /var/lib/aide/aide.db.gz
+    
+    - name: CRON job for integrity check
+      ansible.builtin.cron:
+        name: AIDE integrity check
+        job: /usr/sbin/aide --check
+        hour: 4
+        weekday: 6
+
+
+
     
