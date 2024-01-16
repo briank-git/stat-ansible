@@ -1,0 +1,31 @@
+#
+# MathNet postfix (recipient) address rewriting
+#       - see man page canonical(5) for more details
+#       - used to rewrite sender/recipient addresses for outbound mail.
+#       - useful when local mail (e.g. root@) needs to be sent to VM
+#               user's regular mail, or to change/canonify user accounts
+#               when local and MathNet differ.
+#       - can only remap to *single* address, not multiple
+#
+#       # Configure postfix to enable rewrite of sender/recipient/both addresses
+#       #       #sender_canonical_maps = hash:/etc/postfix/sender_canonical
+#       #       receiver_canonical_maps = hash:/etc/postfix/receiver_canonical
+#       #       #canonical_maps = hash:/etc/postfix/canonical
+#       vi /etc/postfix/main.cf
+#       postfix reload
+#
+#       # To update these maps
+#       #postmap /etc/postfix/sender_canonical
+#       postmap /etc/postfix/receiver_canonical
+#       #postmap /etc/postfix/canonical
+#
+
+# Rewrite one local address
+root		devnull@{{ inventory_hostname }}
+stty2u		devnull@{{ inventory_hostname }}
+
+# Rewrite local domain addresses
+@{{ inventory_hostname }} 	devnull@{{ inventory_hostname }}	
+
+# Rewrite everything to single address (must use regex maps)
+#/^.+/			devnull@{{ inventory_hostname }}

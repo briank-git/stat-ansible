@@ -31,8 +31,8 @@
 
     - name: Copy chrony config
       copy:
-        src: '../files/chrony/chrony.conf'
-        dest: '/etc/chrony.conf'
+        src: ../files/chrony/chrony.conf
+        dest: /etc/chrony.conf
         force: true
 
     - name: Enable chrony
@@ -42,3 +42,25 @@
 
     - name: mlocate updatedb
       ansible.builtin.shell: updatedb
+
+    - name: Add devnull to aliases
+      ansible.builtin.lineinfile:
+        path: /etc/aliases
+        line: 'devnull:     /dev/null'
+        
+    - name: Add postfix main.cf
+      template: 
+        src: ../templates/postfix/main.j2
+        dest: /etc/postfix/main.cf
+
+    - name: Add postfix receiver_canonical
+      template:
+        src: ../templates/postfix/receiver_canonical.j2
+        dest: /etc/postfix/receiver_canonical
+    
+    - name: Enable postfix
+      ansible.builtin.shell: |
+        postmap /etc/postfix/receiver_canonical
+        systemctl start postfix
+        systemctl enable postfix
+

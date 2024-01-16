@@ -1,0 +1,46 @@
+# Stat Nullclient:  satellite
+smtpd_banner = nullclient ESMTP
+biff = no
+local_transport = error:local delivery is disabled
+unknown_local_recipient_reject_code = 550
+
+# Default PATH
+queue_directory = /var/spool/postfix
+command_directory = /usr/sbin
+daemon_directory = /usr/libexec/postfix
+data_directory = /var/lib/postfix
+mailq_path = /usr/bin/mailq.postfix
+sendmail_path = /usr/sbin/sendmail.postfix
+newaliases_path = /usr/bin/newaliases.postfix
+
+myhostname = {{ inventory_hostname }}
+mydomain = stat.ubc.ca
+relayhost = [smtp.stat.ubc.ca]:25
+
+setgid_group = postdrop
+mail_owner = postfix
+myorigin = $myhostname
+inet_interfaces = loopback-only
+inet_protocols = ipv4
+mydestination =
+smtpd_use_tls=no
+mynetworks_style = subnet
+mynetworks =  127.0.0.1
+mailbox_size_limit = 0
+recipient_delimiter = +
+debug_peer_level = 2
+alias_maps =
+alias_database =
+append_dot_mydomain = no
+readme_directory = /usr/share/doc/postfix/README_FILES
+
+# Sender/recipient/both address rewriting
+#       - use regex maps for more powerful translations
+#sender_canonical_maps = hash:/etc/postfix/receiver_canonical
+recipient_canonical_maps = hash:/etc/postfix/receiver_canonical
+#canonical_maps = hash:/etc/postfix/canonical
+sample_directory = /usr/share/doc/postfix/samples
+html_directory = no
+manpage_directory = /usr/share/man
+meta_directory = /etc/postfix
+shlib_directory = /usr/lib64/postfix
