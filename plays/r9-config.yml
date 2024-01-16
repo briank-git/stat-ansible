@@ -28,3 +28,15 @@
       ansible.builtin.shell:
         cmd: yum -y install --nogpgcheck http://satellite6.it.ubc.ca/pub/katello-ca-consumer-latest.noarch.rpm && subscription-manager register --org=UBCStatistics --activationkey=Rhel9_Stat_Migrate
       ignore_errors: true
+
+    - name: Copy chrony config
+      copy:
+        src: '../files/chrony/chrony.conf'
+        dest: '/etc/chrony.conf'
+        force: true
+
+    - name: Enable chrony
+      ansible.builtin.shell: |
+        systemctl start chronyd
+        systemctl status chronyd
+        systemctl enable chronyd
