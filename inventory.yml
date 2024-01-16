@@ -1,0 +1,5 @@
+r9:
+  hosts:
+    r9e-be.stat.ubc.ca:
+  vars:
+    ansible_user: stty2u
