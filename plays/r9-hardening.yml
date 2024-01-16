@@ -97,3 +97,20 @@
         state: stopped
         masked: true
 
+    - name: Allow STAT subnets for SSH
+      ansible.posix.firewalld:
+        rich_rule: rule family=ipv4 source address={{ item.ip }} service name="ssh" accept
+        permanent: true
+        immediate: true
+        zone: public
+        state: enabled
+      with_items: "{{ allowed_subnets }}"
+      when: allowed_subnets is defined
+
+    - name: Disable SSH outside of allowed subnets
+      ansible.posix.firewalld:
+        service: ssh
+        state: disabled
+        zone: public
+        permanent: true
+        immediate: true
