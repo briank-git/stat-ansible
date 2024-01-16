@@ -3,3 +3,4 @@ hardening_packages:
   - name: firewalld
   - name: fail2ban
   - name: aide
+  - name: dnf-automatic

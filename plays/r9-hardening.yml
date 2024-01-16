@@ -36,11 +36,11 @@
 
     - name: Disable root login
       ansible.builtin.lineinfile:
-            dest: /etc/ssh/sshd_config
-            regexp: '^PermitRootLogin'
-            line: "PermitRootLogin no"
-            state: present
-            backup: yes
+        dest: /etc/ssh/sshd_config
+        regexp: '^PermitRootLogin'
+        line: "PermitRootLogin no"
+        state: present
+        backup: yes
 
     - name: Restart ssh
       ansible.builtin.service:
@@ -59,6 +59,26 @@
         dest: /etc/profile.d/tmout.sh
         force: true
     
-    
+    - name: Set dnf-automatic updates to security only
+      ansible.builtin.lineinfile:
+        dest: /etc/dnf/automatic.conf
+        regexp: '^upgrade_type ='
+        line: "upgrade_type = security"
+        state: present
+        backup: yes
+
+    - name: Set dnf-automatic to apply updates
+      ansible.builtin.lineinfile:
+        dest: /etc/dnf/automatic.conf
+        regexp: '^apply_updates ='
+        line: "apply_updates = yes"
+        state: present
+        backup: yes
+
+    - name: Enable dnf-automatic
+      ansible.builtin.service:
+        name: dnf-automatic-install.timer
+        enabled: true
+        state: started
 
     
