@@ -81,4 +81,11 @@
         enabled: true
         state: started
 
-    
+    - name: Enable satellite 6 repo
+      ansible.builtin.shell: subscription-manager repos --enable=satellite-client-6-for-rhel-9-x86_64-rpms
+      ignore_errors: true
+
+    - name: Install katello-host-tools-tracer
+      yum:
+        name: katello-host-tools-tracer
+        state: present
