@@ -36,9 +36,10 @@
         force: true
 
     - name: Enable chrony
-      ansible.builtin.shell: |
-        systemctl start chronyd
-        systemctl enable chronyd
+      ansible.builtin.service:
+        name: chronyd
+        enabled: true
+        status: started
 
     - name: mlocate updatedb
       ansible.builtin.shell: updatedb
@@ -58,9 +59,13 @@
         src: ../templates/postfix/receiver_canonical.j2
         dest: /etc/postfix/receiver_canonical
     
-    - name: Enable postfix
+    - name: Postmap receiver_canonical
       ansible.builtin.shell: |
         postmap /etc/postfix/receiver_canonical
-        systemctl start postfix
-        systemctl enable postfix
+
+    - name: Enable postfix
+      ansible.builtin.service:
+        name: postfix
+        enabled: true
+        status: started
 
