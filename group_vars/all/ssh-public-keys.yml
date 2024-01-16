@@ -3,4 +3,29 @@ ssh_public_keys:
   iana:
     user: '{{ ansible_user }}'
     state: 'present'
-    public_key:
+    public_key: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBDePPMgYJEO6AbEBe2aYHu99f/crdJu2LRgGuQKIZ3U Ian Allison'
+  tam:
+    user: '{{ ansible_user }}'
+    state: 'present'
+    public_key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA11gvAYcJWUOPYb3/FJSYW38ze3VQpNZuNra77IyNN9VKVhO++jGtN8hTU/UYa49hFJSaYd+/OkIoXfEi9ipBbR5jUzxR1ud4IF5fiFy/pmJ655ESrNU63wAxpEtGJidIJjtRgWMXOG5c2cDM+aCfyiSSE/QcjKUQM/lzZMvFSbWKpw/C9F+2BpXT0KsylBWWTZR68TCEU3cywXNSGW5lkp8U08CyKZjrbq5CWgY7VmHBPDfYTp1RfZRPPloIgIIOv31C3e6WqsvtezydiXqAUqvS/0YdUfAG7vl4qyxV0cZUqL/qZDagToofNjbDiq/tL8BZixS62an7jYnVB8OYWw== tam@localhost'
+  thi:
+    user: '{{ ansible_user }}'
+    state: 'present'
+    public_key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAsn33qQm4eiKjoUoTP/oSwbeub4cOiT7a25xshnodfIRUJNzRmSx+dQAC5BOjaAfOSUezjclMzuq763ueU7O6L8IKwtGHwq5lSNKPXM3V3HP72JPxdhYn+ZvO7ogPHaIYNV/Gx3G/nEcm6QoCQ+90zqFlFI4g+gwiOxRm4zPcPfwSUS3J6eAcgS9jKcqQWBRE7ODfevyEhLx7fraIMrM0G1G8gA/0AHbQG/2eBQ0no1HjDjL1GboaOv2yHgG3S0jsyR+ttWVRU156oeCYB4M7uc24qfNBXP2m9sOyFs25vLUBU8chy6h5mf6PnQF8HLGwNA0WfCL5zNu6i+fisynHhw== thi@math.ubc.ca'
+  tony:
+    user: '{{ ansible_user }}'
+    state: 'present'
+    public_key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAgEA0D4AGNVLRRpn3Q5N7ud0Jw/XTR5gJpbVYGXWf+vCHNNOPqHuIRbUshbPo3aCH2tHj4a2ZNkGh33uVPelmauT1B8MXX4YoeVtk/A9Kem06UDPKd1gQdmrGtQ7sRufPDijsuBOsVQCTmZJyfzu6doxEt8Ua4eoI0o6udNlk0fRuNZAW6HjykC2EKCtVcJvKoIVPsMduJg0byO8mNuGwJqYQBQl9mDJ7k8A94Vb7Cd6BBajI36oRxl6YSOSkAs06Q6onntJF/QLWPhOZOmP73Nr4sI8LpqP7Qa7DU0s3roIaZ+NedWCwKmMWFJxw6tPkkwWtrlOYAITxjW9ZUij+z1wFoU6ikP2TahndEyGgiDCRw5y0aq5yQoV/qAumPtaQyIGf24H6aPreb6hHeA8HxIRA5TEAoFKSRv2uSI2YzDgDAZ9NWp1XMSaB84sY+xMe9bx7lyDjg69oK9CVA+6oK9fGZguNn3uYJvzUJMOelOkMhL0ztGnu0VQ/CoLXpi48Qxt7EaUI664Eu67wh1mE9Dmgo1y4vTihiJw89MDFTuo51G7WWitjEN4j7JsoNYRjlqiGpEpwEfckfSCXNadkbq8xF7o+SxWC/XLoFafgZovdX2aYP555xymerf/2+TCvPoF/RCYK2glrzY9LFK1QOry/IpPfJnzSwPqJLfv0Nxq0Nk= TonyNguyenPublicKey'
+  the:
+    user: '{{ ansible_user }}'
+    state: 'present'
+    public_key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCvGanb3HrigEbbN1Sh5FRv/u6y9g/O+3txq+FRi/2wW30HIjttQqGFPc/4oXMPfngAlFv4EAnXCAKx3lATuqcFFAX1zuzYkY7HyeOuErqw4TVv0MKUOnomhnm9GSpTUROqvev3fD+uVh86frk03qm53BHgtVjoF23nWZTUOEKvsYjfqgq63qAjHaAGqqOLj+VWO+mZlX6885rei4gjFl5a0UY2XooGOUUEVGnNqFNteX9hMItIivcVtGNfv5HKK9hsYEIbVFxsOvx0m3cZ2s7Q76evjf27bBykLYu+EziFjMHZ9Swdvo0bzlUXYN2ciCARQILTjSnAZVMB7uDNNv05 tha@burnaby121.stat.ubc.ca'
+  binh:
+    user: '{{ ansible_user }}'
+    state: 'present'
+    public_key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQClC5dQxLxhYitwOz4VbcqS8Rtzh/MK/kH6GOUVvmN8EWohVKvszN5xiv1wm7/WbqTdkpmdDt/G6YSRHEMQPio7scheKp9NT/2eUpXj/xmT3ph0oGVB02Cn3sKW3KM07K/S1E1lyk9A/fVSQhtqjQXnshiu3V70EradWOa1FcFZYVK3Qb0GPRRsbE6pi8GH8j+FbPYjRcwZRlOpm+yV3gsdIXNXI5hjzUzLDf1J3kPO/ENFVn7uqFPy+b7ZFEiIf/w+zDGnLTK54N9YbZcxBLxMIVMdf+WqB9o/Rd8fEKhhqooJrFDtzhX41Jk0hxiscUckjVsineTw6nsWu02X2t6X binh.dang@DESKTOP-H7HCIKT'
+  brian:
+    user: '{{ ansible_user }}'
+    state: 'present'
+    public_key: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMEuZKV4KteqywW6ZXm41ZzYzoM+bDMIpiiIr3lYQJs0 brian.kim@stat.ubc.ca
+'

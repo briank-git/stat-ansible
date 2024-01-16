@@ -1,9 +1,9 @@
 ---
 - name: Setup basic STAT environment
-  hosts: all
+  hosts: r9
+  become: true
   tasks:
     - name: Ensure hostname is set
-      become: true
       tags: ["hostname"]
       ansible.builtin.hostname:
         name: "{{ inventory_hostname }}"
@@ -16,3 +16,10 @@
         key: "{{ item.value.public_key }}"
       with_dict: "{{ ssh_public_keys }}"
       when: ssh_public_keys is defined
+
+    - name: Install firewalld
+      tags:
+        - firewalld
+      ansible.builtin.yum:
+        name: firewalld
+        state: present
