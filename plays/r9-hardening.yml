@@ -49,9 +49,16 @@
 
     - name: Copy sysctl.conf with IP hardening rules
       copy:
-        src: ../files/sysctl.conf
+        src: ../files/hardening/sysctl.conf
         dest: /etc/sysctl.conf
         force: true
 
+    - name: Set SSH connection timeout
+      copy:
+        src: ../files/hardening/tmout.sh
+        dest: /etc/profile.d/tmout.sh
+        force: true
+    
+    
 
     

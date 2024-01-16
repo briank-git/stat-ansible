@@ -1,0 +1,1 @@
+declare -xr TMOUT=900
