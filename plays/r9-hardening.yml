@@ -89,3 +89,11 @@
       yum:
         name: katello-host-tools-tracer
         state: present
+
+    - name: Disable ctrl-alt-del target
+      ansible.builtin.systemd_service:
+        name: ctrl-alt-del.target
+        enabled: false
+        state: stopped
+        masked: true
+
