@@ -1,1 +1,11 @@
 ---
+- name: Apply hardening
+  hosts: r9
+  become: true
+  tasks:
+    - name: Install hardening packages
+      ansible.builtin.yum:
+        name: "{{ item.name }}"
+        state: "{{ item.state | default('present') }}"
+      with_items: "{{ hardening_packages }}"
+      when: hardening_packages is defined
