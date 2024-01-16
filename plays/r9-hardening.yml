@@ -34,6 +34,24 @@
         hour: 4
         weekday: 6
 
+    - name: Disable root login
+      ansible.builtin.lineinfile:
+            dest: /etc/ssh/sshd_config
+            regexp: '^PermitRootLogin'
+            line: "PermitRootLogin no"
+            state: present
+            backup: yes
+
+    - name: Restart ssh
+      ansible.builtin.service:
+        name: sshd
+        state: restarted
+
+    - name: Copy sysctl.conf with IP hardening rules
+      copy:
+        src: ../files/sysctl.conf
+        dest: /etc/sysctl.conf
+        force: true
 
 
     
