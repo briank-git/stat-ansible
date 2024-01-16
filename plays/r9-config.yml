@@ -23,3 +23,8 @@
         state: "{{ item.state | default('present') }}"
       with_items: "{{ base_packages }}"
       when: base_packages is defined
+
+    - name: Register with UBC satellite
+      ansible.builtin.shell:
+        cmd: yum -y install --nogpgcheck http://satellite6.it.ubc.ca/pub/katello-ca-consumer-latest.noarch.rpm && subscription-manager register --org=UBCStatistics --activationkey=Rhel9_Stat_Migrate
+      ignore_errors: true
