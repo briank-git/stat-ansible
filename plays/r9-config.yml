@@ -17,9 +17,9 @@
       with_dict: "{{ ssh_public_keys }}"
       when: ssh_public_keys is defined
 
-    - name: Install firewalld
-      tags:
-        - firewalld
+    - name: Install base packages
       ansible.builtin.yum:
-        name: firewalld
-        state: present
+        name: "{{ item.name }}"
+        state: "{{ item.state | default('present') }}"
+      with_items: "{{ base_packages }}"
+      when: base_packages is defined

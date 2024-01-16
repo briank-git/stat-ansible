@@ -1,0 +1,15 @@
+base_packages:
+  - name: git
+  - name: vim
+  - name: tmux
+  - name: rsync
+  - name: chrony
+  - name: tuned
+  - name: firewalld
+  - name: postfix
+  - name: runc
+    state: absent
+  - name: podman
+    state: absent
+  - name: buildah
+    state: absent
