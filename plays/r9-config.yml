@@ -8,6 +8,11 @@
       ansible.builtin.hostname:
         name: "{{ inventory_hostname }}"
     
+    - name: Register with UBC satellite
+      ansible.builtin.shell:
+        cmd: yum -y install --nogpgcheck http://satellite6.it.ubc.ca/pub/katello-ca-consumer-latest.noarch.rpm && subscription-manager register --org=UBCStatistics --activationkey=Rhel9_Stat_Migrate
+      ignore_errors: true
+    
     - name: Manage SSH public keys
       tags: ["ssh"]
       ansible.posix.authorized_key:
@@ -24,17 +29,12 @@
       with_items: "{{ base_packages }}"
       when: base_packages is defined
 
-    - name: Register with UBC satellite
-      ansible.builtin.shell:
-        cmd: yum -y install --nogpgcheck http://satellite6.it.ubc.ca/pub/katello-ca-consumer-latest.noarch.rpm && subscription-manager register --org=UBCStatistics --activationkey=Rhel9_Stat_Migrate
-      ignore_errors: true
-
     - name: Enable codeready-builder
       ansible.builtin.shell: subscription-manager repos --enable codeready-builder-for-rhel-9-$(arch)-rpms
       ignore_errors: true
 
     - name: Install EPEL repo
-      ansible.builtin.shell: dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+      ansible.builtin.shell: dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
       ignore_errors: true
 
     - name: Copy chrony config
