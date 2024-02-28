@@ -1,0 +1,30 @@
+## Credit to Ian Allison of PIMS
+---
+- name: Create nginx config locations
+  file: path={{ item.name }} state=directory owner=root group=root mode={{ item.mode }}
+  with_items:
+    - name: "{{ nginx_conf_path }}/http-extras.d"
+      mode: "0755"
+    - name: "{{ nginx_conf_path }}/http-locations.d"
+      mode: "0755"
+    - name: "{{ nginx_conf_path }}/https-locations.d"
+      mode: "0755"
+    - name: "{{ nginx_conf_path }}/https-extras.d"
+      mode: "0755"
+
+- name: Add nginx base config for web-nginx-https
+  template:
+    src: "web-nginx-https.conf.j2"
+    dest: "{{ nginx_conf_path }}/web-nginx-https.conf"
+  notify:
+    - reload nginx
+
+- name: Add nginx config for web-nginx-https-redirect
+  template:
+    src: "web-nginx-https-redirect.conf.j2"
+    dest: "{{ nginx_conf_path }}/http-extras.d/web-nginx-https-redirect.conf"
+
+- name: Add nginx config for web-html
+  template:
+    src: "web-nginx-locations.conf.j2"
+    dest: "{{ nginx_conf_path }}/https-locations.d/web-nginx-locations.conf"

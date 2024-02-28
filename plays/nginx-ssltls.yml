@@ -1,0 +1,14 @@
+---
+- name: Apply roles
+  hosts: web
+  become: yes
+  roles:
+    - role: geerlingguy.nginx
+      tags:
+        - nginx
+    - role: dehydrated-letsencrypt
+      tags:
+        - cert
+    - role: nginx-config
+      tags:
+        - nginx
