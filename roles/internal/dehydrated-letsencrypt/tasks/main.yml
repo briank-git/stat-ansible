@@ -65,6 +65,12 @@
   notify:
     - reload nginx
 
+- name: Create DHParams for SSL
+      become: true
+      shell: openssl dhparam -out /etc/ssl/certs/dhparams.pem 2048
+      args:
+        creates: /etc/ssl/certs/dhparams.pem
+
 - name: Flush handlers for dehydrate
   ansible.builtin.meta: flush_handlers
 
